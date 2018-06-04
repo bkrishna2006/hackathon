@@ -1,0 +1,38 @@
+---
+title: "Applianceforecaster"
+author: "BalajiK"
+date: "June 4, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 1. Data extraction
+
+```{R DataExtraction}
+
+zipF<- "C:/Users/balaji_krishnaiyer/Documents/R/xpo_h3/ApplicationForecaster-DataSet.zip"
+outDir<-"C:/Users/balaji_krishnaiyer/Documents/R/xpo_h3/ApplicationForecaster-Extract"
+unzip(zipF,exdir=outDir)
+
+Rawfile <- "C:/Users/balaji_krishnaiyer/Documents/R/xpo_h3/ApplicationForecaster-Extract/ApplicationForecaster-ProductByZipCode.txt"
+
+Raw1 <- read.delim(Rawfile, header = FALSE, sep = '\t', quote = '\'', dec='.', fill = TRUE)
+
+header <- c("DeliveryDate", "ToCity", "ToState", "ToZip", "ToLatitude", "ToLongitude", "ProductDescription")
+
+#Raw1 <- read.csv("C:/Users/balaji_krishnaiyer/Documents/R/xpo_h3/ApplicationForecaster-Extract/ApplicationForecaster-ProductByZipCode.txt")
+
+# Raw2 <- data.frame(c(header,Raw1))
+
+colnames(Raw1) <- header
+Raw2 <- Raw1[,1:7]
+Raw2Sample50 <- Raw2[1:50,]
+
+write.csv(Raw2Sample50,"mySample.csv")
+
+
+
+```
