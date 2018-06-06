@@ -1,0 +1,59 @@
+---
+title: "AppliancePrediction" 
+author: "Balaji K"
+date: "5 June 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 1. Data extraction
+
+```{R DataExtraction}
+
+#zipF<- "~/R/hackathon/ApplicationForecaster-DataSet.zip"
+#outDir<-"~/R/hackathon/ApplicationForecaster-Extract"
+#unzip(zipF,exdir=outDir)
+
+#Rawfile <- "~/R/hackathon/ApplicationForecaster-Extract/ApplicationForecaster-ProductByZipCode.txt"
+#Raw1 <- read.delim(Rawfile, header = FALSE, sep = '\t', quote = '\'', dec='.', fill = TRUE)
+
+header <- c("DelCount", "DelDate", "ToCity", "ToState", "ToZip", "ToLat", "ToLongi", "Product")
+
+Rawfile <- "~/R/hackathon/SampleData.xlsx"
+Raw1 <- read.csv(file = Rawfile,header = TRUE,sep =',',quote = '\'',dec = '.')
+#Raw1 <- read.csv("C:/Users/balaji_krishnaiyer/Documents/R/xpo_h3/ApplicationForecaster-Extract/ApplicationForecaster-ProductByZipCode.txt")
+
+#colnames(Raw1) <- header
+
+#Raw2 <- Raw1[,1:8]
+#Raw2Sample50 <- Raw2[1:50,]
+# write.csv(Raw2Sample50,"mySample.csv")
+# converting the factors  into character type
+# Raw2Sample50[] <- lapply(Raw2Sample50, as.character)
+#NewSamp$DelDate <- as.Date(NewSamp$DelDate)
+#NewSamp$Product <- as.character(NewSamp$Product) 
+```
+### 2. Data Cleansing
+```{R DataCleansing}
+#library(dplyr)
+#library(tidyr)
+#Raw2S200 <- Raw2[1:200,]
+# separate_rows(Raw2S200,Product,sep=";\\s+")
+
+#library(tidyverse)
+#library(stringr)
+#Raw2S200 %>%
+#    mutate(unpacked = str_split(Product, "\t")) %>%
+#    unnest %>%
+#    mutate(Product = str_trim(unpacked))
+
+library(bpa)
+Raw1$Job_Count %>%
+  get_pattern %>%  # extract patterns
+  table %>%        # tabulate frequencies
+  as.data.frame    # display as a data frame
+
+```
